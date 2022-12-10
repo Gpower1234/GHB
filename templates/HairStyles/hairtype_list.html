@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available service</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+  
+</head>
+
+{% block content %}
+
+<body>
+    <div style="margin-top: 70px;" class="container">
+        <table class="table table-bordered table-striped table-dark">
+
+            <thead>
+                <tr>                      
+                    <th scope="col">HAIR TYPE</th>
+                    <th scope="col">PRICE</th>
+                </tr>
+            </thead>
+            {% comment %}
+            {% for type in hairTypes %}
+            <div class="container-fluid">
+                <tbody>
+                    <tr>                          
+                        <td><p style="font-family: garamound;">{{ type.subCategory }}</p></td>
+                        <td><p style="font-family: garamound;">${{ type.price }}</p></td>                          
+                    </tr>
+                </tbody>
+            </div>   
+            {% endfor %} 
+            {% endcomment %}
+
+        </table>
+
+        <div class="d-grid">
+            <button class="btn btn-lg btn-book" style="color: #fff; background-color: #333" type="submit">
+                <h6><a style="text-decoration: none; color: #fff;" href="{% url 'appointment' %}">PROCEED TO APPOINTMENT PAGE</a></h6>
+            </button>
+        </div>
+    </div>
+
+
+<!-- Footer -->
+<footer class="bg-dark text-center text-white" style="margin-top: 100px;">
+  <!-- Grid container -->
+  <div class="container p-4">
+    <!-- Section: Social media -->
+    <section class="mb-4">
+      
+       <!-- Instagram -->
+       <a class="btn btn-outline-light btn-floating m-1" href="https://www.instagram.com/goodnesshairbraids/" role="button">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <!-- Facebook -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+
+    </section>
+    <!-- Section: Social media -->
+
+    <!-- Section: Links -->
+    <section class="">
+      <!--Grid row-->
+      <div class="row">
+        <!--Grid column-->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Links</h5>
+
+          <ul class="list-unstyled mb-0">
+            <li>
+              <a style="text-decoration: none;" href="/" class="text-white" >Home</a>
+            </li>
+            <li>
+              <a style="text-decoration: none;" href="/about_us" class="text-white">About us</a>
+            </li>
+            <li>
+              <a style="text-decoration: none;" href="/service" class="text-white">Service</a>
+            </li>
+            <li>
+              <a style="text-decoration: none;" href="/contacts" class="text-white">Contact us</a>
+            </li>
+          </ul>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Services</h5>
+
+          <ul class="list-unstyled mb-0">
+            <li>Braids</li>
+            <li>Twist</li>
+            <li>Crochet</li>
+            <li>Fox Locs</li>
+            <li>Kids style</li>
+            <li>Natural Hair</li>
+          </ul>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Book Appointments</h5>
+
+          <ul class="list-unstyled mb-0">
+            <li>
+              <a style="text-decoration: none;" class="text-white" href="/appointment">Book Appointment</a>
+            </li>
+            <li>
+              <a style="text-decoration: none;" class="text-white" href="/appointment-history">Appointment History</a>
+            </li>
+          </ul>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Open hours</h5>
+
+          <ul class="list-unstyled mb-0">
+            <li>
+              <p>Monday-saturday: 9am To 5pm</p>
+            </li>
+            <li>
+              <p style="color: #f59;">Sundays: closed</p>
+            </li>
+          </ul>
+        </div>
+        <!--Grid column-->
+      </div>
+      <!--Grid row-->
+    </section>
+    <!-- Section: Links -->
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © {% now "Y" %} Copyright:
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
+  
+    <script src="{% static 'jquery.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
+  
+
+</body>
+</html>
+
+{% endblock content %}

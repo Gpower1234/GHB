@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<head>
+    {% extends 'base.html' %}
+
+    {% load static %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/about_us.css' %}">
+
+</head>
+
+
+{% block content %}
+<body>
+    <div class="container">
+        <div class="row">
+            <h3 style="color: teal; display: 
+            flex; justify-content: center; margin-top: 50px;">
+                <strong style="color: #333;">ABOUT US</strong> 
+            </h3>
+        </div><br><br>
+        <div class="row">
+            <h5 style="color: teal; display: flex; justify-content: center">
+                GOODNESS HAIR BRAIDS
+            </h5><hr class="slant-line">
+            <p style="color: #666;">GHB is an Exceptional Beauty Salon located in Houston, Texas. Our mission is to provide the highest quality service
+              , in union with the highest quality products for the well-being of our guests and the environment.
+            </p>
+        </div>
+        <div class="row" style="margin-top: 20px;">
+          <h6 style="display: flex; justify-content: center;">WHY WE EXIST</h6>
+            <p style="display: flex; justify-content: center; color: #666">At GHB, our main focus is on the unique needs and desires of our guests, making us the most unique
+            salon in Houston: we have professional stylists that are ready to provide professional service,
+            experience and results above and beyond expectations.</p>
+          </p><hr>
+        </div>
+    </div>
+</body><br><br><br>
+
+
+<!-- Footer -->
+<footer class="bg-dark text-center text-white" style="margin-top: 100px;">
+  <!-- Grid container -->
+  <div class="container p-4">
+    <!-- Section: Social media -->
+    <section class="mb-4">
+      
+       <!-- Instagram -->
+       <a class="btn btn-outline-light btn-floating m-1" target="_blank" href="https://www.instagram.com/goodnesshairbraids/" role="button">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <!-- Facebook -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+
+    </section>
+    <!-- Section: Social media -->
+
+    <!-- Section: Links -->
+    <section class="">
+      <!--Grid row-->
+      <div class="row">
+        <!--Grid column-->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Links</h5>
+
+          <ul class="list-unstyled mb-0">
+            <li>
+              <a style="text-decoration: none;" href="/" class="text-white" >Home</a>
+            </li>
+            <li>
+              <a style="text-decoration: none;" href="/about_us" class="text-white">About us</a>
+            </li>
+            <li>
+              <a style="text-decoration: none;" href="/service" class="text-white">Service</a>
+            </li>
+            <li>
+              <a style="text-decoration: none;" href="/contacts" class="text-white">Contact us</a>
+            </li>
+          </ul>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Services</h5>
+
+          <ul class="list-unstyled mb-0">
+            <li>Braids</li>
+            <li>Twist</li>
+            <li>Crochet</li>
+            <li>Fox Locs</li>
+            <li>Kids style</li>
+            <li>Natural Hair</li>
+          </ul>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Book Appointments</h5>
+
+          <ul class="list-unstyled mb-0">
+            <li>
+              <a style="text-decoration: none;" class="text-white" href="/appointment">Book Appointment</a>
+            </li>
+            <li>
+              <a style="text-decoration: none;" class="text-white" href="/appointment-history">Appointment History</a>
+            </li>
+          </ul>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Open hours</h5>
+
+          <ul class="list-unstyled mb-0">
+            <li>
+              <p>Monday-saturday: 9am To 5pm</p>
+            </li>
+            <li>
+              <p style="color: #f59;">Sundays: closed</p>
+            </li>
+          </ul>
+        </div>
+        <!--Grid column-->
+      </div>
+      <!--Grid row-->
+    </section>
+    <!-- Section: Links -->
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © {% now "Y" %} Copyright:
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
+
+       <script src="{% static 'jquery.min.js' %}"></script>
+       <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
+{% endblock content %}
+

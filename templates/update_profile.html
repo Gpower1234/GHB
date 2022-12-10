@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>update-profile</title>
+</head>
+
+{% block content %}
+
+<body>
+    <div class="container" style="background: linear-gradient(rgba(0,150,150,0.1), rgba(0,150,150,0.1)); margin-top: 100px">
+        <!-- Bootstrap 5 starter form -->
+        <h3 style="color: #333;">Update Your Profile:</h3><br>
+
+        <form class="form-control" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+            {{ u_form|crispy }}
+            </div>
+            <div class="d-grid">
+                <button class="btn btn-lg" type="submit" style="background-color: teal; color: #fff">
+                    UPDATE
+                </button> 
+            </div>
+            
+        </form>
+    </div>
+    
+</body>
+
+{% endblock content %}
+</html>
+
+

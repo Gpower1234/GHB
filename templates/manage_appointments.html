@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <title>Manage Appointments</title>
+    <style>
+
+        ul li a:hover {
+        background: #222;
+        }
+
+    </style>
+</head>
+
+{% block content %}
+
+{% if user.is_staff %}
+
+<nav class="navbar navbar-expand-sm navbar-dark" style="background-color: grey;">
+    <div class="container-fluid">
+
+        <img style="height: 40px; width: 40px"  src="{% static 'media/ghb.png' %}" alt="GHB logo">  &nbsp; &nbsp; 
+      
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+            <span style="color: #fff;" class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a style="color: #fff;" class="nav-link" href="/">Home</a></li>
+                <li class="nav-item"><a style="color: #fff;" class="nav-link" href="/GHB">Admin</a></li>
+            </ul>      
+        </div>
+      
+    </div>
+    
+  </nav><br>
+
+<body>
+
+    {% for message in messages %}
+    <div class="container">
+        <b>{{ message }}</b>
+    </div>
+    {% endfor %}
+
+    <div style="margin-top: 70px;" class="container">
+        <table class="table table-bordered table-striped table-dark">
+
+            <thead>
+                <tr>                      
+                    <th scope="col">NAME</th>
+                    <th scope="col">ITEM BOOKED</th>
+                    <th scope="col">PHONE</th>
+                    <th scope="col">ADDRESS</th>
+                    <th scope="col">APPLIED ON</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+
+            {% for app in appointments %}
+                {% if app.date_scheduled is blank %}
+                <div class="container-fluid">
+                    <tbody>
+                        <tr>                          
+                            <td><p style="font-family: garamound;">{{ app.name }}</p></td>
+                            <td><p style="font-family: garamound;">{{ app.booked_item }}</p></td>
+                            <td><p style="font-family: garamound;">{{ app.phone_number }}</p></td>
+                            <td><p style="font-family: garamound;">{{ app.address }}</p></td>   
+                            <td><p style="font-family: garamound;">{{ app.applied_on}}</p></td>
+                            <td>
+                                <p style="font-family: garamound;">
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <input type="date" name="date" value="" placeholder="dd-mm-yy">
+                                        
+                                            <input hidden="true" name="appointment-id" value="{{app.id}}">
+                                        <input type="submit" value="Accept">
+                                    </form> 
+                                </p>
+                            </td>                             
+                        </tr>
+                    </tbody>
+                </div>
+                {% endif %}   
+            {% endfor %}
+
+        </table>
+        
+   
+</body>
+
+{% else %}
+<center>
+    <p style="color: #f07;">permission denied!</p>  
+</center>
+
+{% endif %}
+
+{% endblock content %}
+
+</html>
+
+
+

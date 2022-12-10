@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    
+</head>
+
+{% block content %}
+
+<body>
+
+<div id="login">
+    <h3 class="text-center text-white pt-5">Login form</h3>
+    <div class="container">
+        <div id="login-row" class="row justify-content-center align-items-center">         
+            <div id="login-column" class="col-md-6">
+                <div id="login-box" class="col-md-12">
+                    {% for message in messages %}
+                        <h6 style="color: #009580;">{{ message }}</h6>
+                    {% endfor %}
+                    <form id="login-form" class="form" action="" method="post">
+                        {% csrf_token %}
+                        <h3 class="text-center">Sign In</h3>
+
+                        <div class="form-group">                          
+                            {{ form|crispy }}
+                        </div><br>
+                        
+                        <div class="form-group">
+                            <button style="background-color: teal;" type="submit" name="submit" class="btn btn-md" >submit</button>
+                        </div><br><br>
+                        
+                        <div id="register-link" class="text-right">
+                            <p style="color: #c00">Forgot your password? &nbsp<a href="/accounts/password_reset" style="color: teal; text-decoration: none">Reset Password</a></p>
+                        </div>
+
+                        <div id="register-link" class="text-right">
+                            <h6>Not a memeber? &nbsp<a href="{% url 'signup' %}" style="color: teal; text-decoration: none">Register here</a></h6>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+
+ 
+<!-- Footer -->
+<footer class="bg-dark text-center text-white" style="margin-top: 100px;">
+  <!-- Grid container -->
+  <div class="container p-4">
+    <!-- Section: Social media -->
+    <section class="mb-4">
+      
+       <!-- Instagram -->
+       <a class="btn btn-outline-light btn-floating m-1" target="_blank" href="https://www.instagram.com/goodnesshairbraids/" role="button">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <!-- Facebook -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+
+    </section>
+    <!-- Section: Social media -->
+
+    <!-- Section: Links -->
+    <section class="">
+      <!--Grid row-->
+      <div class="row">
+        <!--Grid column-->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Links</h5>
+
+          <ul class="list-unstyled mb-0">
+            <li>
+              <a style="text-decoration: none;" href="/" class="text-white" >Home</a>
+            </li>
+            <li>
+              <a style="text-decoration: none;" href="/about_us" class="text-white">About us</a>
+            </li>
+            <li>
+              <a style="text-decoration: none;" href="/service" class="text-white">Service</a>
+            </li>
+            <li>
+              <a style="text-decoration: none;" href="/contacts" class="text-white">Contact us</a>
+            </li>
+          </ul>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Services</h5>
+
+          <ul class="list-unstyled mb-0">
+            <li>Braids</li>
+            <li>Twist</li>
+            <li>Crochet</li>
+            <li>Fox Locs</li>
+            <li>Kids style</li>
+            <li>Natural Hair</li>
+          </ul>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Book Appointments</h5>
+
+          <ul class="list-unstyled mb-0">
+            <li>
+              <a style="text-decoration: none;" class="text-white" href="/appointment">Book Appointment</a>
+            </li>
+            <li>
+              <a style="text-decoration: none;" class="text-white" href="/appointment-history">Appointment History</a>
+            </li>
+          </ul>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Open hours</h5>
+
+          <ul class="list-unstyled mb-0">
+            <li>
+              <p>Monday-saturday: 9am To 5pm</p>
+            </li>
+            <li>
+              <p style="color: #f59;">Sundays: closed</p>
+            </li>
+          </ul>
+        </div>
+        <!--Grid column-->
+      </div>
+      <!--Grid row-->
+    </section>
+    <!-- Section: Links -->
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © {% now "Y" %} Copyright:
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
+
+    <script src="{% static 'jquery.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
+  
+{% endblock content %}

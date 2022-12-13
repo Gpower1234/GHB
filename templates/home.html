@@ -170,11 +170,9 @@
     <div class="container">
       <h3 style="color: teal;">Our Gallery</h3>
       <p style="color: #666;">Latest work done by Goodness Hair Braid</p>
-      {% comment %}
       {% for pics in images %}
       <img src="{{ pics.image.url }}" style="height: 240px; width: 240px; margin-bottom: 15px">
       {% endfor %}
-      {% endcomment %}
     </div>
   </center>
   

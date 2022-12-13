@@ -32,7 +32,6 @@
                     <th scope="col">PRICE</th>
                 </tr>
             </thead>
-            {% comment %}
             {% for type in hairTypes %}
             <div class="container-fluid">
                 <tbody>
@@ -43,14 +42,10 @@
                 </tbody>
             </div>   
             {% endfor %} 
-            {% endcomment %}
-
         </table>
 
-        <div class="d-grid">
-            <button class="btn btn-lg btn-book" style="color: #fff; background-color: #333" type="submit">
-                <h6><a style="text-decoration: none; color: #fff;" href="{% url 'appointment' %}">PROCEED TO APPOINTMENT PAGE</a></h6>
-            </button>
+        <div class="container-fluid">
+          <button class="btn btn-md" style="background-color: teal;"><a style="text-decoration: none; color: #fff" href="/appointment">BOOK NOW</a></button>
         </div>
     </div>
 

@@ -18,7 +18,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-CSRF_TRUSTED_ORIGINS = ['https://*.goodnesshairbraids.com']
+CSRF_TRUSTED_ORIGINS = ['https://*.goodnesshairbraid.com']
 
 ALLOWED_HOSTS = ['*']
 

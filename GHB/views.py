@@ -28,9 +28,12 @@ def about_us_view(request):
 def profile_view(request):
     user_FName = request.user.first_name
     user_LName = request.user.last_name
-    x = user_FName[0]
-    y = user_LName[0]
-    return render(request, 'profile.html', {'x': x, 'y': y})
+    if user_FName and user_LName:
+        x = user_FName[0]
+        y = user_LName[0]
+        return render(request, 'profile.html', {'x': x, 'y': y})
+    else: 
+        return render(request, 'profile.html')
 
 def contacts_view(request):
     if request.method == 'POST':

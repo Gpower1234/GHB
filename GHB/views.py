@@ -50,7 +50,14 @@ def contacts_view(request):
                 'content': content
             })
 
-            send_mail('Mail from GHB customer', html_message=html)
+            send_mail(
+                'Mail from GHB customer',
+                'Here is the message',
+                 'support@goodnesshairbraid.com',
+                 ['support@goodnesshairbraid.com'],
+                 html_message=html,
+                 fail_silently=False
+                )
             messages.success(request, f'Hi {name}, your request has been submitted successfully, we will attend to it as soon as possible. ')
             return redirect('index')
 

@@ -7,33 +7,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 
-<body style="background-color: grey;">
-    <div class="container-fluid" style="background-color: teal; padding-top: 15px; padding-bottom: 15px">
+<body style="background-color: #000;">
+    <div class="container-fluid" style="background-color: teal;">
         <center>
-            <h1 style="color: #fff; ">GOODNESS HAIR BRAID</h1>
+            <h5 style="color: #fff; ">GOODNESS HAIR BRAID</h5>
         </center>
     </div>
 
     <div class="container-fluid" style="background-color: #000; color: #fff; padding-top: 20px; padding-bottom: 150px">
-        <b style="margin-left: 10px;">Hello {{ user.first_name|upper }}!</b><br>
+        <b style="margin-left: 10px;">Dear {{ user.first_name|upper }}!</b><br>
 
-        <p style="margin-left: 10px;">We noticed you just sign up on our website.</p>
-        <p style="margin-left: 10px;">
-            Please confirm your email address to activate your account  
-        </p>
+        <p style="margin-left: 10px;">Thank you for signing up for our service. In order to complete your registration, please click on the button below to verify your email address:</p>
+
         <center style="margin-top: 30px;">
             <button style="background-color: teal;">
-                <a href="" style="text-decoration: none; color: white; font-size: 22px">
-                    Confirm email address
+                <a href="activate/<uidb64>/<token>/" style="text-decoration: none; color: white; font-size: 18px">
+                    verify email 
                 </a>
             </button>
         </center>
+        <p style="margin-left: 10px; padding-top: 20px">If you did not sign up for our service, please ignore this email.</p>
+        <p style="margin-left: 10px;">Thank you,</p>
+        <p style="margin-left: 10px;">Goodnesshairbraid.</p>
     </div>
     
 </body>

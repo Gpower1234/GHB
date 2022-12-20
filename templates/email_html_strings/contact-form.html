@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 
 <head>
@@ -13,18 +14,22 @@
 
 
 
-<body>
-    <div class="container-fluid" style="background-color: teal; padding-top: 15px; padding-bottom: 15px">
+<body style="background-color: #000";>
+    <div class="container-fluid" style="background-color: #666;">
         <center>
-            <h1 style="color: #fff; ">GOODNESS HAIR BRAID</h1>
+            <img style="height: 40px; width: 40px"  src="{% static 'media/ghb.png' %}" alt="GHB logo"> 
+        </center>
+    </div>
+    <div class="container-fluid">
+        <center>
+            <p style="margin-top: 20px; color: #fff">{{ subject }}</p>
         </center>
     </div>
 
-    <div class="container-fluid" style="background-color: #000; color: #fff; padding-top: 20px; padding-bottom: 150px">
-        <p style="margin-left: 10px;"><b>Name: </b>{{ name }}</p>
-        <p style="margin-left: 10px;"><b>Subject: </b>{{ subject }}</p>
-        <p style="margin-left: 10px; color: white;"><b>Email: </b>{{ email }}</p>
-        <p style="margin-left: 10px;"><b>Content: </b>{{ content }}</p>
+    <div class="container-fluid" style="color: #bbb; padding-top: 20px;">
+        <p style="margin-left: 10px;">Name: &nbsp;<b></b></p>
+        <p style="margin-left: 10px;">Email: &nbsp;<b>{{ email }}</b></p>
+        <p style="margin-left: 10px;">Content: &nbsp;{{ content }}</p>
     </div>
 
 </body>

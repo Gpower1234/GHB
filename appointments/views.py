@@ -31,7 +31,14 @@ def AppointmentView(request):
                 'booked_item': booked_item
             })
 
-            send_mail('Appointment Application', html_message=html)
+            send_mail(
+                'Appointment Application',
+                'Here is the message',
+                 'support@goodnesshairbraid.com',
+                 ['support@goodnesshairbraid.com'],
+                 html_message=html,
+                 fail_silently=False
+                )
             form.save()
             messages.success(request, f'Hi {user.first_name}, thanks for booking an appointment, a date will be scheduled for your appointment and sent via Mail from the Goodness Hair Braid team. ')
             return redirect('appointment-history')
@@ -51,7 +58,6 @@ class ManageAppointments(ListView):
     template_name = 'manage_appointments.html'
     context_object_name = 'appointments'
     login_required = True
-    #paginate_by = 6
 
     def post(self, request):
         date = request.POST.get('date')
@@ -69,7 +75,14 @@ class ManageAppointments(ListView):
                 
             })
 
-        send_mail('Your Appointment has been Accepted and Scheduled', html_message=html)
+        send_mail(
+                'Your Appointment has been Accepted and Scheduled',
+                'Here is the message',
+                 'support@goodnesshairbraid.com',
+                 ['support@goodnesshairbraid.com'],
+                 html_message=html,
+                 fail_silently=False
+                )
         messages.success(request, f'Date scheduled successfully for {appointment.name}')
         return HttpResponseRedirect(request.path)
 

@@ -31,7 +31,7 @@ class RegisterForm(UserCreationForm):
                 'token': token_generator.make_token(user),
             }
         )
-
+    
         user.email_user(subject, message, html_message=message)
 
 class ContactForm(forms.Form):

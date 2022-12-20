@@ -12,6 +12,7 @@ from .models import Gallery
 from django.utils.encoding import force_str
 from django.utils.http import urlsafe_base64_decode
 from .token import token_generator
+from django.conf import settings
 
 user_model = get_user_model()
 # Create your views here.
@@ -53,8 +54,8 @@ def contacts_view(request):
             send_mail(
                 'Mail from GHB customer',
                 'Here is the message',
-                 'support@goodnesshairbraid.com',
-                 ['support@goodnesshairbraid.com'],
+                 settings.EMAIL_HOST_USER,
+                 [settings.EMAIL_HOST_USER],
                  html_message=html,
                  fail_silently=False
                 )

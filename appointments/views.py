@@ -9,6 +9,7 @@ from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.contrib import messages
 from django.template import context
+from django.conf import settings
 
 
 # Create your views here.
@@ -34,8 +35,8 @@ def AppointmentView(request):
             send_mail(
                 'Appointment Application',
                 'Here is the message',
-                 'support@goodnesshairbraid.com',
-                 ['support@goodnesshairbraid.com'],
+                 settings.EMAIL_HOST_USER,
+                 [settings.EMAIL_HOST_USER],
                  html_message=html,
                  fail_silently=False
                 )
@@ -78,8 +79,8 @@ class ManageAppointments(ListView):
         send_mail(
                 'Your Appointment has been Accepted and Scheduled',
                 'Here is the message',
-                 'support@goodnesshairbraid.com',
-                 ['support@goodnesshairbraid.com'],
+                 settings.EMAIL_HOST_USER,
+                 [''],
                  html_message=html,
                  fail_silently=False
                 )

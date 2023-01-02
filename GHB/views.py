@@ -79,7 +79,7 @@ class SignUpView(CreateView):
         user.is_active = False
         user.save()
 
-        form.send_activation_email(self.request, user)
+        #form.send_activation_email(self.request, user)
 
         return to_return
 

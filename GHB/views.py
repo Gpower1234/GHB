@@ -4,17 +4,21 @@ from django.core.mail import send_mail
 from .forms import RegisterForm, ContactForm, UserUpdateForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.views.generic import CreateView, TemplateView, RedirectView
+from django.views.generic import TemplateView, RedirectView
 from django.contrib.auth import login
 from django.urls import reverse_lazy
 from django.contrib.auth import get_user_model
 from .models import Gallery
-from django.utils.encoding import force_str
-from django.utils.http import urlsafe_base64_decode
+from django.utils.encoding import force_str, force_bytes
+from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from .token import token_generator
 from django.conf import settings
+from django.template.loader import render_to_string
+from django.contrib.sites.shortcuts import get_current_site
+
 
 user_model = get_user_model()
+
 # Create your views here.
 
 def home_view(request):
@@ -67,6 +71,36 @@ def contacts_view(request):
 
     return render(request, 'contacts.html', {'form': form})
 
+def sign_up_view(request):
+    
+    if request.POST:
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.is_active = False
+            user.save()
+            send_activation_email(request, user)
+            return redirect('check_email')
+    else:
+        form = RegisterForm()
+    return render(request, 'register.html', {'form': form})
+
+def send_activation_email(request, user):
+    current_site = get_current_site(request)
+    subject = 'Activate Your Account'
+    message = render_to_string(
+        'activate_account.html',
+        {
+            'user': user,
+            'domain': current_site.domain,
+            'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+            'token': token_generator.make_token(user),
+        }
+    )
+
+    user.email_user(subject, message, html_message=message)
+
+'''
 class SignUpView(CreateView):
     form_class = RegisterForm
     template_name = 'register.html'
@@ -82,7 +116,7 @@ class SignUpView(CreateView):
         form.send_activation_email(self.request, user)
 
         return to_return
-
+'''
 class ActivateView(RedirectView):
     url = reverse_lazy('success')
 

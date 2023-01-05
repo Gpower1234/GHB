@@ -79,12 +79,24 @@ def sign_up_view(request):
             user = form.save(commit=False)
             user.is_active = False
             user.save()
-            send_activation_email(request, user)
+            current_site = get_current_site(request)
+            subject = 'Activate Your Account'
+            message = render_to_string(
+                'activate_account.html',
+                {
+                'user': user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': token_generator.make_token(user),
+                }
+            )
+
+            user.email_user(subject, message, html_message=message)
             return redirect('check_email')
     else:
         form = RegisterForm()
     return render(request, 'register.html', {'form': form})
-
+'''
 def send_activation_email(request, user):
     current_site = get_current_site(request)
     subject = 'Activate Your Account'
@@ -99,7 +111,7 @@ def send_activation_email(request, user):
     )
 
     user.email_user(subject, message, html_message=message)
-
+'''
 '''
 class SignUpView(CreateView):
     form_class = RegisterForm

@@ -81,7 +81,7 @@ def sign_up_view(request):
             user.save()
             current_site = get_current_site(request)
             subject = 'Activate Your Account'
-            message = render_to_string(
+            html = render_to_string(
                 'activate_account.html',
                 {
                 'user': user,
@@ -91,7 +91,14 @@ def sign_up_view(request):
                 }
             )
 
-            user.email_user(subject, message, html_message=message)
+            send_mail(
+                subject,
+                'Here is the message',
+                 settings.EMAIL_HOST_USER,
+                 [''],
+                 html_message=html,
+                 fail_silently=False
+                )
             return redirect('check_email')
     else:
         form = RegisterForm()

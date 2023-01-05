@@ -95,7 +95,7 @@ def sign_up_view(request):
                 subject,
                 'Here is the message',
                  settings.EMAIL_HOST_USER,
-                 [''],
+                 [user.email],
                  html_message=html,
                  fail_silently=False
                 )

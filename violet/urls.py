@@ -3,7 +3,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from GHB import views
-from GHB.views import ActivateView, CheckEmailView, SuccessView
+from GHB.views import CheckEmailView, SuccessView
 from django.contrib.auth import views as auth_views
 
 app_name = 'GHB'

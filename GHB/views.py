@@ -55,7 +55,14 @@ def contacts_view(request):
                 'content': content
             })
 
-            
+            send_mail(
+                'Mail from GHB customer',
+                'Here is the message',
+                 settings.EMAIL_HOST_USER,
+                 [settings.EMAIL_HOST_USER],
+                 html_message=html,
+                 fail_silently=False
+                )
             messages.success(request, f'Hi {name}, your request has been submitted successfully, we will attend to it as soon as possible. ')
             return redirect('index')
 
@@ -84,14 +91,6 @@ def sign_up_view(request):
                 }
             )
 
-            send_mail(
-                subject,
-                'Here is the message',
-                 settings.EMAIL_HOST_USER,
-                 [user.email],
-                 html_message=html,
-                 fail_silently=False
-                )
             return redirect('check_email')
     else:
         form = RegisterForm()

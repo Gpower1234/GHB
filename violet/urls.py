@@ -21,7 +21,7 @@ urlpatterns = [
     path('update-profile/', views.update_profile, name='update-profile'),
     #path('signup/', SignUpView.as_view(), name='signup'),
     path('signup/', views.sign_up_view, name='signup'),
-    path('goodnesshairbraid.com/activate/<uidb64>/<token>/', ActivateView.as_view(), name='activate'),
+    path('activate/<uidb64>/<token>/', ActivateView.as_view(), name='activate'),
     path('check-email/', CheckEmailView.as_view(), name='check_email'),
     path('success/', SuccessView.as_view(), name='success'),
     path('', include('django.contrib.auth.urls')),

@@ -80,7 +80,26 @@ def sign_up_view(request):
         if form.is_valid():
             user = form.save(commit=False)
             user.is_active = False
-            
+            current_site = get_current_site(request)
+            subject = 'Activate Your Account'
+            html = render_to_string(
+                'activate_account.html',
+                {
+                'user': user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': token_generator.make_token(user),
+                }
+            )
+
+            send_mail(
+                subject,
+                'Here is the message',
+                 settings.EMAIL_HOST_USER,
+                 [user.email],
+                 html_message=html,
+                 fail_silently=False
+                )
 
             user.save()
             return redirect('check_email')

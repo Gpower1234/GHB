@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.template.loader import render_to_string
 from django.core.mail import send_mail
 from .forms import RegisterForm, ContactForm, UserUpdateForm
@@ -15,6 +15,8 @@ from .token import token_generator
 from django.conf import settings
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
+from django.contrib.auth.models import User
+
 
 
 user_model = get_user_model()
@@ -136,7 +138,7 @@ class SignUpView(CreateView):
         form.send_activation_email(self.request, user)
 
         return to_return
-'''
+
 class ActivateView(RedirectView):
     url = reverse_lazy('success')
 
@@ -156,6 +158,26 @@ class ActivateView(RedirectView):
 
         else:
             return render(request, 'activate_account_invalid.html')
+'''
+
+def activate(request, uidb64, token):
+    try:
+        uid = urlsafe_base64_decode(uidb64).decode()
+        user = get_object_or_404(User, pk=uid)
+    
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+
+    if user is not None and token_generator.check_token(user, token):
+        user.is_active = True
+        user.save()
+        login(request, user)
+        return render(request, 'successful.html')
+
+    else:
+        return render(request, 'activate_account_invalid.html')
+
+
 
 class CheckEmailView(TemplateView):
     template_name = 'check_email.html'

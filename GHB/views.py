@@ -78,7 +78,6 @@ def sign_up_view(request):
         if form.is_valid():
             user = form.save(commit=False)
             user.is_active = False
-            user.save()
             current_site = get_current_site(request)
             subject = 'Activate Your Account'
             html = render_to_string(
@@ -99,6 +98,8 @@ def sign_up_view(request):
                  html_message=html,
                  fail_silently=False
                 )
+
+            user.save()
             return redirect('check_email')
     else:
         form = RegisterForm()

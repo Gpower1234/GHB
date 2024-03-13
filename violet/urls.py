@@ -8,7 +8,6 @@ from django.contrib.auth import views as auth_views
 
 app_name = 'GHB'
 
-
 urlpatterns = [
     path('GHB/', admin.site.urls),
     path('', include('HairStyles.urls')),
